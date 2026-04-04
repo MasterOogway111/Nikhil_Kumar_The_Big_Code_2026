@@ -1,0 +1,21 @@
+{
+  "name": "fear-free-night-navigator",
+  "version": "1.0.0",
+  "description": "AI-Powered Psychological Safety Routing MVP",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently --names \"backend,ml,frontend\" --prefix-colors \"blue,yellow,green\" \"cd backend && npm run dev\" \"bash ml/start.sh\" \"cd frontend && npm run dev\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../ml && pip install -r requirements.txt"
+  },
+  "keywords": [
+    "safety",
+    "routing",
+    "night-navigation",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

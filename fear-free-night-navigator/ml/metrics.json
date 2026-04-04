@@ -1,0 +1,84 @@
+{
+  "mae": 0.0245,
+  "rmse": 0.0315,
+  "r2": 0.9815,
+  "spearman_corr": 0.9883,
+  "bias": 0.0009,
+  "max_overestimate": 0.1067,
+  "max_underestimate": -0.1064,
+  "high_risk_mae": 0.0326,
+  "n_test_samples": 1215,
+  "feature_importance": {
+    "time_of_day": 444,
+    "poi_density": 374,
+    "road_isolation": 338,
+    "lighting_proxy": 338,
+    "hospital_score": 317,
+    "police_density": 316,
+    "police_coverage": 313,
+    "connectivity": 259,
+    "business_density": 259,
+    "police_distance_score": 204,
+    "commercial_activity": 203,
+    "open_now_ratio": 169
+  },
+  "sample_predictions": [
+    {
+      "actual": 0.4047,
+      "predicted": 0.4022,
+      "error": -0.0025
+    },
+    {
+      "actual": 0.3764,
+      "predicted": 0.382,
+      "error": 0.0056
+    },
+    {
+      "actual": 0.0713,
+      "predicted": 0.0585,
+      "error": -0.0128
+    },
+    {
+      "actual": 0.6133,
+      "predicted": 0.6192,
+      "error": 0.0059
+    },
+    {
+      "actual": 0.7891,
+      "predicted": 0.7628,
+      "error": -0.0263
+    },
+    {
+      "actual": 0.6035,
+      "predicted": 0.6316,
+      "error": 0.028
+    },
+    {
+      "actual": 0.1419,
+      "predicted": 0.157,
+      "error": 0.015
+    },
+    {
+      "actual": 0.3268,
+      "predicted": 0.3469,
+      "error": 0.0201
+    },
+    {
+      "actual": 0.5946,
+      "predicted": 0.6189,
+      "error": 0.0243
+    },
+    {
+      "actual": 0.0,
+      "predicted": -0.0045,
+      "error": -0.0045
+    }
+  ],
+  "criteria": {
+    "MAE < 0.05": true,
+    "R\u00b2 > 0.85": true,
+    "Spearman > 0.90": true,
+    "Bias < 0.01": true
+  },
+  "all_passed": true
+}
