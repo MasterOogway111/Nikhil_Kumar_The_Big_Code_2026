@@ -30,7 +30,7 @@ Each route segment is scored by a LightGBM model trained on 12 safety features. 
 
 **Rohini to Mehrauli, Delhi ,Night-time travel**
 
-<img src="docs/demo.png" width="600" alt="App Screenshot">
+<img src="fear-free-night-navigator/docs/demo.png" width="600" alt="App Screenshot">
 
 ```
              FASTEST PATH       SAFEST PATH (balanced)
@@ -97,28 +97,28 @@ The risk model is a **LightGBM** regressor trained on 12 safety features. All 4 
 | Bias | ~0.000 | ≈ 0.00 |
 
 ### Actual vs Predicted
-<img src="ml/actual_vs_predicted.png" width="500" alt="Actual vs Predicted">
+<img src="fear-free-night-navigator/ml/actual_vs_predicted.png" width="500" alt="Actual vs Predicted">
 
 Points hug the perfect-prediction line across the full 0–1 risk range, confirming the model generalizes well and doesn't over/underfit any region.
 
 ---
 
 ### Residual Analysis
-<img src="ml/residuals.png" width="500" alt="Residuals">
+<img src="fear-free-night-navigator/ml/residuals.png" width="500" alt="Residuals">
 
 Errors are tightly centered around zero with no systematic bias. The slight funnel shape near risk = 0 is expected - very safe segments are easier to predict confidently.
 
 ---
 
 ### Feature Importance
-<img src="ml/feature_importance.png" width="500" alt="Feature Importance">
+<img src="fear-free-night-navigator/ml/feature_importance.png" width="500" alt="Feature Importance">
 
 `time_of_day` is the single strongest predictor, followed closely by `poi_density`, `lighting_proxy`, and `road_isolation` - exactly the features that matter for night-time safety.
 
 ---
 
 ### SHAP Explainability
-<img src="ml/shap_summary.png" width="500" alt="SHAP Summary">
+<img src="fear-free-night-navigator/ml/shap_summary.png" width="500" alt="SHAP Summary">
 
 SHAP values confirm the feature importance ranking and reveal directionality:
 - **High `poi_density`** (blue dots, right side) → lower risk 
