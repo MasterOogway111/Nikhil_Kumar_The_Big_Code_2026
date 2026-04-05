@@ -82,7 +82,7 @@ export const useRouteStore = create<RouteStore>((set, get) => ({
     const bestIdx = v.alternatives.indexOf(best);
     set({
       routeData: v,
-      activeRoute: deepClone(best), // ✅ deep clone = guaranteed new reference
+      activeRoute: deepClone(best), 
       activeRouteIdx: bestIdx,
     });
   },
@@ -92,7 +92,7 @@ export const useRouteStore = create<RouteStore>((set, get) => ({
     if (!routeData) return;
     set({
       activeRouteIdx: v,
-      activeRoute: deepClone(routeData.alternatives[v]), // ✅ deep clone
+      activeRoute: deepClone(routeData.alternatives[v]), 
     });
   },
 
@@ -107,7 +107,7 @@ export const useRouteStore = create<RouteStore>((set, get) => ({
     console.log(`[slider] weight=${v} → idx=${bestIdx} time=${best.total_time} risk=${best.avg_risk}`);
 
     set({
-      activeRoute: deepClone(best), // ✅ deep clone = Zustand always sees a new object
+      activeRoute: deepClone(best), 
       activeRouteIdx: bestIdx,
     });
   },

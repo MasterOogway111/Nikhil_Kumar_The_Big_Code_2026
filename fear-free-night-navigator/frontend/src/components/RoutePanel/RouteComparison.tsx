@@ -20,7 +20,7 @@ function formatDist(meters: number) {
 }
 
 export default function RouteComparison() {
-  // ✅ FIX: use activeRoute object directly
+  //  use activeRoute object directly
   const { routeData, activeRoute, activeRouteIdx, showComparison, toggleComparison, sliderLoading } = useRouteStore();
 
   if (!routeData || !activeRoute) return null;
@@ -33,7 +33,7 @@ export default function RouteComparison() {
   const isSafest = activeRouteIdx === routeData.alternatives.length - 1;
   const isBalanced = !isFastest && !isSafest;
 
-  // ✅ FIX: all diffs computed from activeRoute vs shortest — fully dynamic
+  // FIX: all diffs computed from activeRoute vs shortest — fully dynamic
   const timeDiff = activeRoute.total_time - shortest.total_time;
   const riskDiff = shortest.avg_risk - activeRoute.avg_risk;
   const distDiff = (activeRoute.total_distance ?? 0) - (shortest.total_distance ?? 0);
@@ -65,7 +65,7 @@ export default function RouteComparison() {
         </div>
       </div>
 
-      {/* ✅ Active route stats — driven by activeRoute object */}
+      {/* Active route stats — driven by activeRoute object */}
       <div className="grid grid-cols-2 gap-4">
         <div className="p-3 bg-gray-50 rounded-lg">
           <p className="text-[10px] text-gray-500 uppercase font-bold mb-1">Duration</p>
@@ -82,7 +82,7 @@ export default function RouteComparison() {
         </div>
       </div>
 
-      {/* ✅ Trade-off box — fully dynamic from activeRoute */}
+      {/* Trade-off box — fully dynamic from activeRoute */}
       <div className="bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
         <div className="flex justify-between text-xs mb-1">
           <span className="text-indigo-700">Max Risk Reduction</span>
@@ -201,7 +201,7 @@ export default function RouteComparison() {
             {timeDiff > 0 && <> at the cost of <span className="font-bold text-amber-600">+{Math.round(timeDiff / 60)} min</span></>}
             {timeDiff < 0 && <> and saves <span className="font-bold text-green-600">{Math.round(Math.abs(timeDiff) / 60)} min</span></>}.{' '}
             {isBalanced ? '⚖️ Balanced between speed and safety.'
-              : riskDiff > 0.1 ? '✅ Strongly recommended for night travel.'
+              : riskDiff > 0.1 ? ' Strongly recommended for night travel.'
               : '⚡ Routes are very similar — either is fine.'}
           </p>
         </div>

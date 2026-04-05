@@ -74,7 +74,7 @@ def generate_area_samples(profile: dict, n: int) -> pd.DataFrame:
     })
     return df
 
-# ── Generate samples for all areas ───────────────────────────────────────────
+# Generate samples for all areas 
 SAMPLES_PER_AREA = 300  # 28 areas × 300 = 8400 base samples
 
 frames = []
@@ -85,7 +85,7 @@ for area, profile in AREA_PROFILES.items():
 
 df = pd.concat(frames, ignore_index=True).sample(frac=1, random_state=42).reset_index(drop=True)
 
-# ── Risk label: area ground truth + feature deviations + temporal + noise ─────
+# ── Risk label: area ground truth + feature deviations + temporal + noise
 # 50% weight on real area profile (domain knowledge)
 # 50% weight on measured features (model-learnable signals)
 df["risk"] = (
@@ -101,7 +101,7 @@ df["risk"] = (
   + np.random.normal(0, 0.03, len(df))           # small realistic noise
 ).clip(0, 1)
 
-# ── Drop internal columns before saving ──────────────────────────────────────
+#  Drop internal columns before saving 
 df = df.drop(columns=["_base_risk", "_area"])
 
 df.to_csv("dataset.csv", index=False)

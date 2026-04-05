@@ -43,7 +43,7 @@ print(f"\nTest MAE: {mae:.4f}  (target < 0.05)")
 
 joblib.dump(model, "model.pkl")
 print("Model saved → model.pkl")
-# ── Quantile models for uncertainty quantification ────────────────────────────
+# ── Quantile models for uncertainty quantification 
 model_low = lgb.LGBMRegressor(
     objective='quantile', alpha=0.1,
     n_estimators=300, learning_rate=0.05,

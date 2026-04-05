@@ -18,7 +18,6 @@ export interface RouteResult {
   total_distance: number;
 }
 
-// ✅ ADDED: was referenced but never defined
 export interface RouteAlternative {
   segments: ScoredSegment[];
   avg_risk: number;

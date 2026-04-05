@@ -1,18 +1,18 @@
 import { GraphNode, GraphEdge } from '../models/Route';
 
-// ── Cost function ─────────────────────────────────────────────────────────────
+// ─ Cost function 
 // λ1*risk + λ2*time_normalized + λ3*uncertainty
 // Weights sum to 1.0 and are derived from the safety slider in routeController
 function edgeCost(
   edge: GraphEdge,
-  lambda: [number, number, number] = [0.6, 0.3, 0.1]
+  lambda: [number, number, number] = [0.45, 0.45, 0.1]
 ): number {
   const [l1, l2, l3] = lambda;
   const timeNorm = Math.min(edge.time / 3600, 1); // normalize to 0–1, cap at 1 hour
   return l1 * edge.risk + l2 * timeNorm + l3 * edge.uncertainty;
 }
 
-// ── Build graph from scored segments ─────────────────────────────────────────
+// ── Build graph from scored segments 
 // Each segment start/end becomes a node, the segment itself becomes a directed edge
 export function buildGraph(
   allScoredSegments: Array<{
@@ -53,7 +53,7 @@ export function buildGraph(
   return { nodes: Array.from(nodeMap.values()), edges };
 }
 
-// ── Dijkstra core ─────────────────────────────────────────────────────────────
+// ─ Dijkstra 
 export function dijkstra(
   nodes: GraphNode[],
   edges: GraphEdge[],
@@ -114,7 +114,7 @@ export function dijkstra(
   return { path, totalCost: dist.get(endId) ?? Infinity };
 }
 
-// ── Preset variants ───────────────────────────────────────────────────────────
+ 
 
 // Safest: heavily penalizes risk, tolerates longer time
 export function dijkstraSafest(
@@ -123,7 +123,7 @@ export function dijkstraSafest(
   startId: string,
   endId: string
 ): { path: string[]; totalCost: number } {
-  return dijkstra(nodes, edges, startId, endId, [0.7, 0.2, 0.1]);
+  return dijkstra(nodes, edges, startId, endId, [0.85, 0.1, 0.05]);
 }
 
 // Fastest: heavily penalizes time, tolerates higher risk
@@ -133,5 +133,5 @@ export function dijkstraFastest(
   startId: string,
   endId: string
 ): { path: string[]; totalCost: number } {
-  return dijkstra(nodes, edges, startId, endId, [0.3, 0.6, 0.1]);
+  return dijkstra(nodes, edges, startId, endId, [0.05, 0.9, 0.05]);
 }

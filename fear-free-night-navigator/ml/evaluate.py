@@ -16,9 +16,7 @@ FEATURES = [
     "hospital_score", "business_density", "open_now_ratio"
 ]
 
-# ─────────────────────────────────────────────
-# Load model and test data
-# ─────────────────────────────────────────────
+
 model = joblib.load("model.pkl")
 
 if os.path.exists("test_results.csv"):
@@ -33,9 +31,8 @@ else:
     y_test = df["risk"]
     y_pred = model.predict(X_test)
 
-# ─────────────────────────────────────────────
+
 # Core Metrics
-# ─────────────────────────────────────────────
 mae   = mean_absolute_error(y_test, y_pred)
 from sklearn.metrics import root_mean_squared_error
 rmse  = root_mean_squared_error(y_test, y_pred)
@@ -69,18 +66,14 @@ print(f"  Max Underestimate:{max_under:.4f}")
 if high_risk_mae is not None:
     print(f"  High-Risk MAE:    {high_risk_mae:.4f}   (critical segments)")
 
-# ─────────────────────────────────────────────
 # Feature Importances
-# ─────────────────────────────────────────────
 imp = dict(zip(FEATURES, model.feature_importances_))
 print(f"\n  Feature Importances:")
 for k, v in sorted(imp.items(), key=lambda x: -x[1]):
     bar = "█" * int(v / max(imp.values()) * 20)
     print(f"    {k:<25} {bar} {v:.0f}")
 
-# ─────────────────────────────────────────────
 # Pass/Fail Summary
-# ─────────────────────────────────────────────
 print("\n" + "=" * 60)
 all_passed = True
 checks = [
@@ -95,12 +88,11 @@ for label, passed in checks:
     if not passed:
         all_passed = False
 
-print("\n" + ("✅ ALL EVALUATION CRITERIA MET" if all_passed else "⚠️  SOME CRITERIA NOT MET"))
+print("\n" + (" ALL EVALUATION CRITERIA MET" if all_passed else " SOME CRITERIA NOT MET"))
 print("=" * 60)
 
-# ─────────────────────────────────────────────
+
 # Save metrics as JSON (for /metrics API endpoint)
-# ─────────────────────────────────────────────
 metrics = {
     "mae":           round(mae, 4),
     "rmse":          round(rmse, 4),
@@ -131,9 +123,9 @@ with open("metrics.json", "w") as f:
 
 print(f"\n  Metrics saved → metrics.json")
 
-# ─────────────────────────────────────────────
-# Optional: SHAP + plots (only if matplotlib/shap installed)
-# ─────────────────────────────────────────────
+
+# SHAP + plots (only if matplotlib/shap installed)
+
 try:
     import matplotlib
     matplotlib.use('Agg')
@@ -188,6 +180,6 @@ try:
     plt.close()
     print("  SHAP summary plot saved → shap_summary.png")
 except ImportError:
-    print("  ℹ️  shap not installed — run: pip install shap")
+    print("  shap not installed — run: pip install shap")
 
-print("\nDone. ✅")
+print("\nDone.")

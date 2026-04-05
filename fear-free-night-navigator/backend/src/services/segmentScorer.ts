@@ -96,10 +96,10 @@ export async function scoreSegment(
       const res = await axios.post(`${ML_URL}/predict`, safeFeatures, { timeout: 3000 });
       risk_score = res.data.risk_score;
       uncertainty = res.data.confidence_interval ?? 0.1;
-console.log(`🤖 ML prediction for ${segmentId}: risk=${risk_score.toFixed(3)} ci=[${res.data.lower_bound}, ${res.data.upper_bound}] width=${uncertainty.toFixed(3)}`);
+console.log(`ML prediction for ${segmentId}: risk=${risk_score.toFixed(3)} ci=[${res.data.lower_bound}, ${res.data.upper_bound}] width=${uncertainty.toFixed(3)}`);
       
     } catch (mlError: any) {
-      console.warn(`⚠️  ML sidecar unreachable for ${segmentId} — using fallback`);
+      console.warn(` ML sidecar unreachable for ${segmentId} — using fallback`);
       uncertainty = 0.5;
     }
 

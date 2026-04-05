@@ -9,4 +9,9 @@ export default {
     '!src/**/*.d.ts',
     '!src/app.ts',
   ],
+  globals: {
+    'ts-jest': {
+      tsconfig: 'tsconfig.test.json' 
+    }
+  }
 };
